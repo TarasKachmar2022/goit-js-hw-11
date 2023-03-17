@@ -1,4 +1,5 @@
 export function cardMarkup(array){
+    console.log(array)
     return array.map(({webformatURL, largeImageURL, tags, likes, views, comments, downloads}) => {
         return `<div class="photo-card">
             <a class="gallery__link" href="${largeImageURL}">
@@ -21,4 +22,3 @@ export function cardMarkup(array){
         </div>`
     }).join('');
 }
-new SimpleLightbox('.gallery a', { captionsData: 'tags' });

@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 // import Handlebars from "handlebars";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
@@ -25,14 +25,14 @@ function onFormSubmitBtnClick(event){
     
     fetchImagesApi.resetPage();
     clearCardsContainer();
-    fetchImagesApi.fetchImages().then(array => {
+    fetchImagesApi.fetchImages(axios).then(array => {
         notiflixMessage(array);
         appendCardsMarkup(array);
     })   
 }
 
 function onLoadmoreBtnClick(){
-    fetchImagesApi.fetchImages().then(array => {
+    fetchImagesApi.fetchImages(axios).then(array => {
         fetchImagesApi.incrementPage();
         notiflixMessage(array);
         appendCardsMarkup(array);
@@ -43,7 +43,6 @@ function appendCardsMarkup(array){
     refs.galleryDivEl.insertAdjacentHTML("beforeend", cardMarkup(array.hits));
     simpleLightbox.refresh();
 }
-
 
 function clearCardsContainer(){
     refs.galleryDivEl.innerHTML = '';
