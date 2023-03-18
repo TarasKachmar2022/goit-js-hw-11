@@ -8,9 +8,10 @@ import { cardMarkup } from "./js/markup";
 import { localStorageSaveInputValue, localStorageSavedValue } from "./js/localStorage";
 import { notifyNoImages, notifyLastImages, notifySuccess } from './js/notiflix';
 import { showLoadmoreBtn, hideLoadmoreBtn, lastPageHideLoadmoreBtn } from "./js/load-moreBtn";
+import { smoothScroll } from "./js/smoothScroll";
 
 const fetchImagesApi = new FetchImagesApi();
-const simpleLightbox = new SimpleLightbox('.gallery a', { captionsData: 'tags' });
+const simpleLightbox = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 300 });
 
 let itemsCounter = 0;
 let currentInputValue = '';
@@ -29,7 +30,7 @@ refs.inputEl.addEventListener('input', throttle(saveInputValue, 500));
 localStorageSavedValue(refs.inputEl);
 
 function saveInputValue(event){
-    currentInputValue = event.target.value;
+    currentInputValue = event.target.value.toLowerCase().trim();
     localStorageSaveInputValue(currentInputValue);
 }
 
@@ -38,32 +39,34 @@ function onFormSubmitBtnClick(event){
     
     fetchImagesApi.query = localStorageSavedValue(refs.inputEl);
     // fetchImagesApi.query = event.target.elements.searchQuery.value;
-
+    
     console.log(itemsCounter)
+    hideLoadmoreBtn();
     fetchImagesApi.resetPage();
     clearCardsContainer();
     restartItemCounter();
     fetchImagesApi.fetchImages(axios).then(array => {
         fetchImagesApi.incrementPage();
-        notiflixMessage(array);
         appendCardsMarkup(array);
+        notiflixMessage(array);
     })   
 }
 
 function onLoadmoreBtnClick(){
-    hideLoadmoreBtn();
     fetchImagesApi.fetchImages(axios).then(array => {
+        hideLoadmoreBtn();
         fetchImagesApi.incrementPage();
-        console.log(fetchImagesApi.page)
         appendCardsMarkup(array);
         showLoadmoreBtn();
         notiflixMessage(array);
+        smoothScroll();
     });
 }
 
 function appendCardsMarkup(array){
     refs.galleryDivEl.insertAdjacentHTML("beforeend", cardMarkup(array.hits));
     simpleLightbox.refresh();
+    
 }
 
 function clearCardsContainer(){
