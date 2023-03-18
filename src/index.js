@@ -1,10 +1,10 @@
 import axios from "axios";
 import throttle from "lodash.throttle";
-// import Handlebars from "handlebars";
+import galleryMarkup from "../src/templates/galleryMarkup.hbs";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import { FetchImagesApi } from "./js/api-service";
-import { cardMarkup } from "./js/markup";
+// import { cardMarkup } from "./js/markup";
 import { localStorageSaveInputValue, localStorageSavedValue } from "./js/localStorage";
 import { notifyNoImages, notifyLastImages, notifySuccess } from './js/notiflix';
 import { showLoadmoreBtn, hideLoadmoreBtn, lastPageHideLoadmoreBtn } from "./js/load-moreBtn";
@@ -27,6 +27,7 @@ refs.formEl.addEventListener('submit', onFormSubmitBtnClick);
 refs.loadmoreBtn.addEventListener('click', onLoadmoreBtnClick);
 refs.inputEl.addEventListener('input', throttle(saveInputValue, 500));
 
+document.body.innerHTML = templateFunction();
 localStorageSavedValue(refs.inputEl);
 
 function saveInputValue(event){
@@ -65,7 +66,8 @@ function onLoadmoreBtnClick(){
 }
 
 function appendCardsMarkup(array){
-    refs.galleryDivEl.insertAdjacentHTML("beforeend", cardMarkup(array.hits));
+    // refs.galleryDivEl.insertAdjacentHTML("beforeend", cardMarkup(array.hits));
+    refs.galleryDivEl.insertAdjacentHTML("beforeend", galleryMarkup(array.hits));
     simpleLightbox.refresh();
     
 }
