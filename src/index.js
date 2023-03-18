@@ -13,6 +13,7 @@ const fetchImagesApi = new FetchImagesApi();
 const simpleLightbox = new SimpleLightbox('.gallery a', { captionsData: 'tags' });
 
 let itemsCounter = 0;
+let currentInputValue = '';
 
 const refs = {
     formEl: document.querySelector('#search-form'),
