@@ -7,5 +7,5 @@ export function localStorageSaveInputValue(currentInputValue){
 export function localStorageSavedValue(inputEl){
     const savedValue = localStorage.getItem(STORAGE_KEY);
     inputEl.value = savedValue;
-    return savedValue
+    return savedValue;
 }

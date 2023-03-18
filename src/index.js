@@ -30,7 +30,8 @@ refs.inputEl.addEventListener('input', throttle(saveInputValue, 500));
 localStorageSavedValue(refs.inputEl);
 
 function saveInputValue(event){
-    currentInputValue = event.target.value.toLowerCase().trim();
+    // В цьому випадку сервер відпрацьовує .trim().toLowerCase(); Додано для прикладу!
+    currentInputValue = event.target.value.trim().toLowerCase();
     localStorageSaveInputValue(currentInputValue);
 }
 
