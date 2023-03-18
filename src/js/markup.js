@@ -4,7 +4,7 @@
 
 // export function cardMarkup(array){
 //     return array.map(({webformatURL, largeImageURL, tags, likes, views, comments, downloads}) => {
-//         return `<div class="photo-card">
+//         return `<article class="photo-card">
 //             <a class="gallery__link" href="${largeImageURL}">
 //                 <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" width="370" height="294"/>
 //             </a>
@@ -22,6 +22,6 @@
 //                     <b>Downloads</b> ${downloads}
 //                 </p>
 //             </div>
-//         </div>`
+//         </article>`
 //     }).join('');
 // }

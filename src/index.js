@@ -27,8 +27,8 @@ refs.formEl.addEventListener('submit', onFormSubmitBtnClick);
 refs.loadmoreBtn.addEventListener('click', onLoadmoreBtnClick);
 refs.inputEl.addEventListener('input', throttle(saveInputValue, 500));
 
-document.body.innerHTML = templateFunction();
 localStorageSavedValue(refs.inputEl);
+document.body.innerHTML = templateFunction();
 
 function saveInputValue(event){
     // В цьому випадку сервер відпрацьовує .trim().toLowerCase(); Додано для прикладу!
@@ -69,7 +69,6 @@ function appendCardsMarkup(array){
     // refs.galleryDivEl.insertAdjacentHTML("beforeend", cardMarkup(array.hits));
     refs.galleryDivEl.insertAdjacentHTML("beforeend", galleryMarkup(array.hits));
     simpleLightbox.refresh();
-    
 }
 
 function clearCardsContainer(){
