@@ -68,30 +68,7 @@ img {
   border-bottom-right-radius: 3px;
 }
 
-.load-more {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-  border-color: transparent;
-  border-radius: 3px;
-  padding: 10px;
-  text-transform: uppercase;
-  color: #ffffff;
-  background-color: #4848c9;
-}
 
-.load-more:active {
-  outline: 2px solid #7474f7;
-}
-
-.load-more.is-hidden {
-  display: none;
-}
-
-.load-more.spinner.is-hidden {
-  display: none;
-}
 
 // // Cards
 

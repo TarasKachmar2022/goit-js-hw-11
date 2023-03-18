@@ -8,10 +8,14 @@ export class FetchImagesApi{
     }
 
     async fetchImages(axios) {
-        const response = await axios.get(`${BASE_URL}api/?${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=4&page=${this.page}`)
-        this.incrementPage();
+        try{
+        const response = await axios.get(`${BASE_URL}api/?${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`)
+        
         const data = response.data;
+        console.log(data)
         return data;
+        }
+        catch{error => console.error(error)}
     }
 
     incrementPage(){
